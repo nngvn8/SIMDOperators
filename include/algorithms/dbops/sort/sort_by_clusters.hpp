@@ -77,7 +77,7 @@ namespace tuddbs {
     void refine(SimdOpsIterable auto p_data) {
       const size_t cluster_count = m_clusters->size();
       for (size_t i = 0; i < cluster_count; ++i) {
-        tuddbs::Cluster& c = m_clusters->front();
+        const tuddbs::Cluster c = m_clusters->front();  // copy: pop_front() may free the deque node
         m_clusters->pop_front();
         if (c.len == 1) {
           continue;
